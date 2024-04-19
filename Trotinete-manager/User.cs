@@ -8,12 +8,22 @@ namespace Trotinete_manager
 {
     public class User
     {
-        private string _id;
+        private int _id;
         private string _email;
         private string _password;
         private int _phone;
 
-        public User(string Id, string Email, string Password, int Phone)
+        public User(string proprietati)
+        {
+            String[] token = proprietati.Split(',');
+
+            this._id = int.Parse(token[0]);
+            this._email = token[1];
+            this._password = token[2];
+            this._phone = int.Parse(token[3]);
+        }
+
+        public User(int Id, string Email, string Password, int Phone)
         {
             Id = id;
             Email = email;
@@ -21,7 +31,7 @@ namespace Trotinete_manager
             Phone = phone;
         }
 
-        public string id
+        public int id
         {
             get { return _id; }
             set { _id = value; }
@@ -53,6 +63,11 @@ namespace Trotinete_manager
             text += "Password " + email + "\n";
             text += "Phone " + phone + "\n";
             return text;
+        }
+
+        public string ToSave()
+        {
+            return this._email + "," + this._email + "," + this._password + "," + this._phone;
         }
     }
 }
