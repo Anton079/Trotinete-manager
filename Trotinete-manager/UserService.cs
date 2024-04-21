@@ -16,7 +16,7 @@ namespace Trotinete_manager
             this.LoadData();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Trotinete_manager
             }
         }
 
-        private String GetFilePath()
+        public String GetFilePath()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -82,6 +82,28 @@ namespace Trotinete_manager
             {
                 Console.WriteLine(x.UserInfo());
             }
+        }
+
+        public int FindUserById(int user)
+        {
+            foreach(User x in _UserS)
+            {
+                if(x.Id == user)
+                {
+                    return user; 
+                }
+            }
+            return -1;
+        }
+
+        public bool AddUser(User user)
+        {
+            if (FindUserById(user.Id) == -1)
+            {
+                this._UserS.Add(user);
+                return true;
+            }
+            return false;
         }
 
     }
